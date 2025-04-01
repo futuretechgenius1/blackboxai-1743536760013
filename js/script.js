@@ -143,16 +143,30 @@ function appendMessage(role, content) {
             // Handle regular text with formatting
             const textContainer = document.createElement('div');
             
-            // Convert numbered items (e.g., "1. ", "2. ") to proper formatting
-            let formattedText = part.replace(/(\d+\.\s)(.*?)(?=\n|$)/g, (match, number, text) => {
-                return `<div class="numbered-item"><span class="number">${number}</span><span>${text}</span></div>`;
-            });
-            
-            // Convert markdown-style headers (e.g., "# ", "## ", "### ")
-            formattedText = formattedText.replace(/^(#{1,3})\s(.+)$/gm, (match, hashes, text) => {
-                const level = hashes.length;
-                return `<h${level}>${text}</h${level}>`;
-            });
+            // Split text into paragraphs
+            const paragraphs = part.split('\n\n');
+            let formattedText = paragraphs.map(paragraph => {
+                // Skip empty paragraphs
+                if (!paragraph.trim()) return '';
+                
+                // Convert markdown-style headers (e.g., "# ", "## ", "### ")
+                if (/^#{1,3}\s/.test(paragraph)) {
+                    return paragraph.replace(/^(#{1,3})\s(.+)$/gm, (match, hashes, text) => {
+                        const level = hashes.length;
+                        return `<h${level}>${text}</h${level}>`;
+                    });
+                }
+                
+                // Convert numbered items (e.g., "1. ", "2. ")
+                if (/^\d+\.\s/.test(paragraph)) {
+                    return paragraph.replace(/^(\d+\.\s)(.*?)$/gm, (match, number, text) => {
+                        return `<div class="numbered-item"><span class="number">${number}</span><span>${text}</span></div>`;
+                    });
+                }
+                
+                // Regular paragraph
+                return `<p>${paragraph}</p>`;
+            }).join('\n');
             
             textContainer.innerHTML = formattedText;
             messageContent.appendChild(textContainer);
