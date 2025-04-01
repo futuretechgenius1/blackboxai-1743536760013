@@ -52,39 +52,84 @@
     color: #fff;
 }
 
-.message-content p {
-    margin: 0.8rem 0;
+/* Text content styles */
+.message-content {
+    color: #e6e6e6;
+    line-height: 1.6;
+    font-size: 1rem;
+    padding: 0.5rem 0;
 }
 
+/* Headings */
+.message-content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2rem 0 1.2rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.message-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.8rem 0 1rem;
+    color: #fff;
+}
+
+.message-content h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.8rem;
+    color: #fff;
+}
+
+/* Paragraphs */
+.message-content p {
+    margin: 1rem 0;
+    line-height: 1.7;
+}
+
+/* Lists */
 .message-content ul,
 .message-content ol {
-    margin: 0.8rem 0;
-    padding-left: 1.5rem;
+    margin: 1rem 0;
+    padding-left: 2rem;
 }
 
 .message-content li {
-    margin: 0.4rem 0;
+    margin: 0.5rem 0;
+    line-height: 1.6;
 }
 
 .message-content ul li {
     list-style-type: disc;
+    color: #fff;
 }
 
 .message-content ol li {
     list-style-type: decimal;
+    color: #fff;
 }
 
+/* Numbered items */
 .message-content .numbered-item {
     display: flex;
     align-items: flex-start;
-    margin: 1rem 0;
+    margin: 0.8rem 0;
+    line-height: 1.6;
 }
 
 .message-content .numbered-item .number {
     font-weight: 600;
     color: #fff;
-    margin-right: 0.8rem;
-    min-width: 1.5rem;
+    margin-right: 1rem;
+    min-width: 1.8rem;
+    opacity: 0.8;
+}
+
+.message-content .numbered-item span:last-child {
+    flex: 1;
 }
 
 .message.user {
